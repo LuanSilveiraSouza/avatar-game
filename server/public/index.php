@@ -9,8 +9,8 @@ header("Access-Control-Allow-Methods: OPTIONS,GET,POST,UPDATE,PUT,DELETE");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
-$requestMethod = $_SERVER['REQUEST_METHOD'];
+$request_method = $_SERVER['REQUEST_METHOD'];
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-Router::handleRequest($uri, $requestMethod);
+Router::handleRequest($uri, $request_method);

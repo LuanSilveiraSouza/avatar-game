@@ -2,17 +2,16 @@
 
 namespace App;
 
-include_once '../src/models/User.php';
-use App\Models\User;
+include_once '../src/controllers/UserController.php';
+use App\Controllers\UserController;
 
 class Router {
     
     public static function handleRequest($url, $method) {
-        $user = new User('User', 'Admin');
+        $resource = explode("/", $url);
 
-        header('HTTP/1.1 200 OK');
-        $response['user'] = $user;
-        
-        echo json_encode($response);
+        if (count($resource) >= 1 && $resource[1] == "users") {
+            UserController::list();
+        }
     }
 }
