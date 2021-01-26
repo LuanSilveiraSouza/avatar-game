@@ -30,8 +30,13 @@ class DBConnection
         $this->db->disconnect();
     }
 
-    public function query(string $sql) 
+    public function query(string $sql)
     {
         return $this->db->connection->query($sql);
+    }
+
+    public function prepare(string $sql)
+    {
+        return $this->db->connection->prepare($sql);
     }
 }

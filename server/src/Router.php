@@ -10,8 +10,14 @@ class Router {
     public static function handleRequest($url, $method) {
         $resource = explode("/", $url);
 
-        if (count($resource) >= 1 && $resource[1] == "users") {
-            UserController::list();
-        }
+        if (count($resource) >= 1) {
+            if($resource[1] == "users") {
+                if($method == "GET") {
+                    UserController::list();
+                } else if($method == "POST") {
+                    UserController::create();
+                }
+            }
+        } 
     }
 }
