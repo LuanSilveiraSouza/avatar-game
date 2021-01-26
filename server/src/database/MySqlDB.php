@@ -2,21 +2,24 @@
 
 namespace App\Database;
 
+include_once "DBStrategy.php";
 use App\Database\DBStrategy;
 use PDO;
 
-include "DBStrategy.php";
-
-class PostgresDB implements DBStrategy
+class MySqlDB implements DBStrategy
 {
     private string $uri;
+    private string $user;
+    private string $password;
     public $connection = null;
 
-    public function connect(string $uri): bool
+    public function connect(string $uri, string $user, string $password): bool
     {
         $this->uri = $uri;
+        $this->user = $user;
+        $this->password = $password;
 
-        $this->connection = new PDO($this->uri);
+        $this->connection = new PDO($this->uri, $this->user, $this->password);
 
         return true;
     }
