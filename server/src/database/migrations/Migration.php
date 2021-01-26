@@ -3,6 +3,6 @@
 namespace App\Database;
 
 interface Migration {
-    public function up() : void;
-    public function down() : void;
+    static function up() : void;
+    static function down() : void;
 }

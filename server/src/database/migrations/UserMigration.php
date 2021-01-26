@@ -1,16 +1,20 @@
 <?php
 
-namespace App\Models;
+namespace App\Database\Migration;
 
-include_once "./Migration.php";
+include_once "Migration.php";
 use App\Database\Migration;
 
 class UserMigration implements Migration {
-    function up(): void {
+    static function up(): void {
+        $sql = "CREATE TABLE users (
+            id INT NOT NULL PRIMARY KEY
+        );";
 
+        $GLOBALS['database']->query($sql);
     }
 
-    function down(): void {
-
+    static function down(): void {
+        $GLOBALS['database']->query('DROP TABLE users;');
     }
 }
