@@ -19,6 +19,6 @@ class ChoiceMigration implements Migration {
     }
 
     static function down(): void {
-        $GLOBALS['database']->query('DROP TABLE questions;');
+        $GLOBALS['database']->query('DROP TABLE choices;');
     }
 }

@@ -9,6 +9,7 @@ class QuestionMigration implements Migration {
     static function up(): void {
         $sql = "CREATE TABLE IF NOT EXISTS questions (
             id INT AUTO_INCREMENT PRIMARY KEY,
+            content VARCHAR (200),
             position INT);";
 
         $GLOBALS['database']->query($sql);

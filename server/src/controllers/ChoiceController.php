@@ -2,19 +2,19 @@
 
 namespace App\Controllers;
 
-include_once '../src/models/Question.php';
+include_once '../src/models/Choice.php';
 include_once '../src/ports/HttpCode.php';
 
-use App\Models\Question;
+use App\Models\Choice;
 use App\Ports\HttpCode;
 
-class QuestionController
+class ChoiceController
 {
-    static function list()
+    static function list(string $question_id)
     {
         header(HttpCode::Http200);
 
-        $questions = Question::findAll();
+        $questions = Choice::findByQuestion($question_id);
 
         echo json_encode($questions);
     }
@@ -25,17 +25,17 @@ class QuestionController
 
         $msg = "";
 
-        if (isset($input['position']) && isset($input['content'])) {
+        if (isset($input['question_id']) && isset($input['content']) && isset($input['points'])) {
 
-            $question = new Question($input['position'], $input['content']);
+            $choice = new Choice($input['question_id'], $input['content'], $input['points']);
 
-            $result = $question->create();
+            $result = $choice->create();
 
             if ($result) {
-                $msg = "Question created";
+                $msg = "Choice created";
                 header(HttpCode::Http201);
             } else {
-                $msg = "Cannot create question";
+                $msg = "Cannot create choice";
                 header(HttpCode::Http400);
             }
         } else {
@@ -48,15 +48,15 @@ class QuestionController
 
     static function delete(string $id)
     {
-        $result = Question::delete($id);
+        $result = Choice::delete($id);
         $msg = "";
 
         if (isset($result)) {
             header(HttpCode::Http200);
-            $msg = "Question deleted";
+            $msg = "Choice deleted";
         } else {
             header(HttpCode::Http404);
-            $msg = "Question not found";
+            $msg = "Choice not found";
         }
 
         echo json_encode(array("msg" => $msg));
