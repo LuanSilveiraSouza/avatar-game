@@ -11,12 +11,17 @@ class User
     protected string $password;
     public string $role;
 
-    public function __construct(string $name, string $role, string $password = '', string $id = '')
+    public function __construct(string $name, string $role = 'user', string $password = '', string $id = '')
     {
         $this->id = $id;
         $this->name = $name;
-        $this->role = $role;
         $this->password = $password;
+
+        if ($role != 'admin') {
+            $this->role = 'user';
+        } else {
+            $this->role = 'admin';
+        }
     }
 
     function set_password(string $password)
@@ -77,7 +82,8 @@ class User
         }, $GLOBALS['database']->query($sql)->fetchAll());
     }
 
-    static function delete(string $id): mixed {
+    static function delete(string $id): mixed
+    {
         $sql = "DELETE FROM users WHERE id = ?;";
 
         $query = $GLOBALS['database']->prepare($sql);

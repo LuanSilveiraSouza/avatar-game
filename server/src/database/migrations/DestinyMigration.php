@@ -5,19 +5,19 @@ namespace App\Database\Migration;
 include_once "Migration.php";
 use App\Database\Migration;
 
-class UserMigration implements Migration {
+class DestinyMigration implements Migration {
     static function up(): void {
-        $sql = "CREATE TABLE IF NOT EXISTS users (
+        $sql = "CREATE TABLE IF NOT EXISTS destinies (
             id INT AUTO_INCREMENT PRIMARY KEY,
-            name VARCHAR (50) NOT NULL,
-            password VARCHAR (50),
-            role ENUM('user', 'admin') NOT NULL
+            content VARCHAR (200),
+            min_score INT,
+            max_score INT
         );";
 
         $GLOBALS['database']->query($sql);
     }
 
     static function down(): void {
-        $GLOBALS['database']->query('DROP TABLE users;');
+        $GLOBALS['database']->query('DROP TABLE destinies;');
     }
 }
