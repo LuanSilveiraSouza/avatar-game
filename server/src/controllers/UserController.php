@@ -104,4 +104,36 @@ class UserController
 
         echo json_encode(array("msg" => $msg));
     }
+
+    static function login()
+    {
+        $input = (array) json_decode(file_get_contents('php://input'), TRUE);
+
+        $msg = "";
+
+        if (isset($input['name']) && isset($input['password'])) {
+
+            $user = User::findByName($input['name']);
+
+            if ($user) {
+                if ($user->get_password() == $input['password']) {
+                    $_SESSION['user_id'] = $user->id;
+                    $_SESSION['permission'] = $user->role;
+                    $msg = "Logged succesfully";
+                    header(HttpCode::Http200);
+                } else {
+                    $msg = "Wrong password";
+                    header(HttpCode::Http401);
+                }
+            } else {
+                $msg = "Login failed";
+                header(HttpCode::Http400);
+            }
+        } else {
+            $msg = "Not enough body parameters";
+            header(HttpCode::Http400);
+        }
+
+        echo json_encode(array("msg" => $msg));
+    }
 }

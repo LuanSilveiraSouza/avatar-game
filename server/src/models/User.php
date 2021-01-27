@@ -29,6 +29,11 @@ class User
         $this->password = $password;
     }
 
+    function get_password()
+    {
+        return $this->password;
+    }
+
     public function to_array()
     {
         return array("id" => $this->id, "name" => $this->name, "password" => $this->password, "role" => $this->role);
@@ -64,6 +69,18 @@ class User
     static function find(string $id): mixed
     {
         $sql = "SELECT * FROM users WHERE id = $id;";
+
+        $result = $GLOBALS['database']->query($sql)->fetch();
+
+        if ($result != false) {
+            return new User($result['name'], $result['role'], $result['password'], $result['id']);
+        }
+        return null;
+    }
+
+    static function findByName(string $name): mixed
+    {
+        $sql = "SELECT * FROM users WHERE name = '$name';";
 
         $result = $GLOBALS['database']->query($sql)->fetch();
 

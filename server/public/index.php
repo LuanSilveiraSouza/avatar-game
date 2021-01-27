@@ -22,4 +22,6 @@ $database = new DBConnection(new MySqlDB());
 $database->connect("mysql:host=127.0.0.1;dbname=public", "root", "dockermysql");
 $database->set_attributes();
 
+session_start();
+
 Router::handleRequest($uri, $request_method);

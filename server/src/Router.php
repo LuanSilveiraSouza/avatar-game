@@ -23,12 +23,21 @@ class Router
         $request_processed = false;
 
         if (count($resource) >= 1) {
-            if ($resource[1] == "users") {
+            if ($resource[1] == "login" && $method == "POST") {
+                UserController::login();
+                $request_processed = true;
+            } else if ($resource[1] == "logout" && $method == "GET") {
+                $_SESSION = array();
+                session_destroy();
+                $request_processed = true;
+                header(HttpCode::Http200);
+                echo json_encode(array("msg" => "Logged out"));
+            } else if ($resource[1] == "users") {
                 if ($method == "GET") {
                     if (isset($resource[2])) {
                         UserController::index($resource[2]);
                         $request_processed = true;
-                    } else {
+                    } else if (isset($_SESSION['user_id'])) {
                         UserController::list();
                         $request_processed = true;
                     }
