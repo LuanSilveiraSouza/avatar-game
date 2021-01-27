@@ -20,5 +20,6 @@ $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
 $database = new DBConnection(new MySqlDB());
 $database->connect("mysql:host=127.0.0.1;dbname=public", "root", "dockermysql");
+$database->set_attributes();
 
 Router::handleRequest($uri, $request_method);

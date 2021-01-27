@@ -5,6 +5,7 @@ namespace App\Database;
 include_once "DBStrategy.php";
 
 use App\Database\DBStrategy;
+use PDO;
 
 class DBConnection
 {
@@ -18,6 +19,12 @@ class DBConnection
     public function setDb(DBStrategy $db)
     {
         $this->db = $db;
+    }
+
+    public function set_attributes()
+    {
+        $this->db->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $this->db->connection->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
     }
 
     public function connect(string $uri, string $user, string $password)
