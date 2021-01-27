@@ -7,7 +7,7 @@ use App\Database\Migration;
 
 class UserMigration implements Migration {
     static function up(): void {
-        $sql = "CREATE TABLE users (
+        $sql = "CREATE TABLE IF NOT EXISTS users (
             id INT AUTO_INCREMENT PRIMARY KEY,
             name VARCHAR (50) NOT NULL,
             password VARCHAR (50),

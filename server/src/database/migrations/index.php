@@ -3,12 +3,16 @@
 namespace App\Database\Migration;
 
 require_once __DIR__ . "/UserMigration.php";
+require_once __DIR__ . "/QuestionMigration.php";
+require_once __DIR__ . "/ChoiceMigration.php";
 require_once __DIR__ . "/../DBConnection.php";
 require_once __DIR__ . "/../MySqlDB.php";
 
 use App\Database\DBConnection;
 use App\Database\MySqlDB;
 use App\Database\Migration\UserMigration;
+use App\Database\Migration\QuestionMigration;
+use App\Database\Migration\ChoiceMigration;
 
 $database = new DBConnection(new MySqlDB());
 $database->connect("mysql:host=127.0.0.1;dbname=public", "root", "dockermysql");
@@ -18,10 +22,14 @@ class MigrationAgreggator
     static function up(): void
     {
         UserMigration::up();
+        QuestionMigration::up();
+        ChoiceMigration::up();
     }
 
     static function down(): void
     {
+        ChoiceMigration::down();
+        QuestionMigration::down();
         UserMigration::down();
     }
 }

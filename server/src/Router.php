@@ -3,9 +3,11 @@
 namespace App;
 
 include_once '../src/controllers/UserController.php';
+include_once '../src/controllers/QuestionController.php';
 include_once '../src/ports/HttpCode.php';
 
 use App\Controllers\UserController;
+use App\Controllers\QuestionController;
 use App\Ports\HttpCode;
 
 class Router
@@ -34,6 +36,17 @@ class Router
                     $request_processed = true;
                 } else if ($method == "DELETE" && isset($resource[2])) {
                     UserController::delete($resource[2]);
+                    $request_processed = true;
+                }
+            } else if ($resource[1] == "questions") {
+                if ($method == "GET") {
+                    QuestionController::list();
+                    $request_processed = true;
+                } else if ($method == "POST") {
+                    QuestionController::create();
+                    $request_processed = true;
+                } else if ($method == "DELETE" && isset($resource[2])) {
+                    QuestionController::delete($resource[2]);
                     $request_processed = true;
                 }
             }
