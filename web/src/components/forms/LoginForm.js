@@ -1,18 +1,47 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import FormStyles from './Form.module.css';
 
-const LoginForm = () => {
+const LoginForm = ({ handleSubmit }) => {
+	const [nameInput, setNameInput] = useState('');
+	const [passwordInput, setPasswordInput] = useState('');
+
 	return (
-		<div className={FormStyles.container}>
+		<form
+			className={FormStyles.container}
+			onSubmit={(e) => {
+				e.preventDefault();
+				
+				const data = {
+					name: nameInput,
+					password: passwordInput,
+				};
+
+				handleSubmit(data);
+			}}
+		>
 			<label htmlFor='name'>Name</label>
-            <input type="text" name="name" className={FormStyles.input}/>
+			<input
+				type='text'
+				name='name'
+				className={FormStyles.input}
+				value={nameInput}
+				onChange={(event) => setNameInput(event.target.value)}
+			/>
 
 			<label htmlFor='password'>Password</label>
-            <input type="text" name="password" className={FormStyles.input}/>
+			<input
+				type='password'
+				name='password'
+				className={FormStyles.input}
+				value={passwordInput}
+				onChange={(event) => setPasswordInput(event.target.value)}
+			/>
 
-            <button className={FormStyles.button}>Login</button>
-		</div>
+			<button type='submit' className={FormStyles.button}>
+				Login
+			</button>
+		</form>
 	);
 };
 
