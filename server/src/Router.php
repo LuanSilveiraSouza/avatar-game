@@ -6,12 +6,14 @@ include_once '../src/controllers/UserController.php';
 include_once '../src/controllers/QuestionController.php';
 include_once '../src/controllers/ChoiceController.php';
 include_once '../src/controllers/DestinyController.php';
+include_once '../src/controllers/GameController.php';
 include_once '../src/ports/HttpCode.php';
 
 use App\Controllers\UserController;
 use App\Controllers\QuestionController;
 use App\Controllers\ChoiceController;
 use App\Controllers\DestinyController;
+use App\Controllers\GameController;
 use App\Ports\HttpCode;
 
 class Router
@@ -87,6 +89,17 @@ class Router
                     $request_processed = true;
                 } else if ($method == "DELETE" && isset($resource[2])) {
                     DestinyController::delete($resource[2]);
+                    $request_processed = true;
+                }
+            } else if ($resource[1] == "games") {
+                if ($method == "GET" && isset($resource[2])) {
+                    GameController::list($resource[2]);
+                    $request_processed = true;
+                } else if ($method == "POST") {
+                    GameController::create();
+                    $request_processed = true;
+                } else if ($method == "DELETE" && isset($resource[2])) {
+                    GameController::delete($resource[2]);
                     $request_processed = true;
                 }
             }

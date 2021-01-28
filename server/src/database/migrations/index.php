@@ -6,6 +6,7 @@ require_once __DIR__ . "/UserMigration.php";
 require_once __DIR__ . "/QuestionMigration.php";
 require_once __DIR__ . "/ChoiceMigration.php";
 require_once __DIR__ . "/DestinyMigration.php";
+require_once __DIR__ . "/GameMigration.php";
 require_once __DIR__ . "/../DBConnection.php";
 require_once __DIR__ . "/../MySqlDB.php";
 
@@ -15,6 +16,7 @@ use App\Database\Migration\UserMigration;
 use App\Database\Migration\QuestionMigration;
 use App\Database\Migration\ChoiceMigration;
 use App\Database\Migration\DestinyMigration;
+use App\Database\Migration\GameMigration;
 
 $database = new DBConnection(new MySqlDB());
 $database->connect("mysql:host=127.0.0.1;dbname=public", "root", "dockermysql");
@@ -27,10 +29,12 @@ class MigrationAgreggator
         QuestionMigration::up();
         ChoiceMigration::up();
         DestinyMigration::up();
+        GameMigration::up();
     }
 
     static function down(): void
     {
+        GameMigration::down();
         DestinyMigration::down();
         ChoiceMigration::down();
         QuestionMigration::down();
