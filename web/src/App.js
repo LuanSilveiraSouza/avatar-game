@@ -1,8 +1,10 @@
-import './App.css';
+import NavBar from './components/NavBar';
+import AppStyles from './App.module.css';
 
 function App() {
   return (
-    <div className="App">
+    <div className={AppStyles.pageWrapper}>
+      <NavBar />
       <h1>Hello World!!!</h1>
     </div>
   );

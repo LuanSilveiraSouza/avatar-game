@@ -1,0 +1,34 @@
+.container {
+    width: 100%;
+    height: 15vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--color-light);
+}
+
+.title {
+    margin-left: 5%;
+    font-size: var(--font-title);
+}
+
+.navLinks {
+    display: flex;
+    margin-right: 10%;
+}
+
+.navButton {
+    background-color: #FFF;
+    font-size: var(--font-subtitle);
+    border: none;
+    padding: 5%;
+    cursor: pointer;
+    margin: 0 5%;
+    transition: all .3s;
+}
+
+.navButton:active,
+.navButton:hover {
+    background-color: var(--color-light);
+}
+
