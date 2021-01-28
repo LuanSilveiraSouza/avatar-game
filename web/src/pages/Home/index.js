@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Page from '../../components/Page';
 
-import CharactersImage from '../../assets/characters.png';
+import CharactersImage from '../../assets/characters.jpeg';
 import HomeStyles from './Home.module.css';
 
 const Home = () => {
-	const [scrollPosition, setScrollPosition] = useState();
+	const [scrollPosition, setScrollPosition] = useState(0);
 
 	useEffect(() => {
 		window.onscroll = () => {

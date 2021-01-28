@@ -1,0 +1,35 @@
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.container * {
+    margin: 2% 0;
+}
+
+.container label {
+    margin: 5% 0 0 0;
+}
+
+.input {
+    background-color: var(--color-light);
+    border: none;
+    padding: 2%;
+}
+
+.button {
+    align-self: center;
+    width: 50%;
+    background-color: #FFF;
+    font-size: var(--font-subtitle);
+    border: none;
+    padding: 2% 5%;
+    cursor: pointer;
+    transition: all .3s;
+}
+
+.button:active,
+.button:hover {
+    background-color: var(--color-light);
+}
