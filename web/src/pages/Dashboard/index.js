@@ -35,28 +35,29 @@ const Dashboard = () => {
 	return (
 		<Page>
 			<main className={DashboardStyles.container}>
-				<button
-					className={DashboardStyles.logoutButton}
-					onClick={handleLogout}
-				>
-					Logout
-				</button>
-				<button
-					className={DashboardStyles.logoutButton}
-					onClick={() => history.push('/game')}
-				>
-					New Game
-				</button>
+				<div className={DashboardStyles.actions}>
+					<button
+						className={DashboardStyles.logoutButton}
+						onClick={handleLogout}
+					>
+						Logout
+					</button>
+					<button
+						className={DashboardStyles.logoutButton}
+						onClick={() => history.push('/game')}
+					>
+						New Game
+					</button>
+				</div>
 
-				<h1>Dashboard</h1>
-
+				<h1 className={DashboardStyles.tableTitle}>Recent Games</h1>
 				<table className={DashboardStyles.table}>
 					<tr>
 						<th>Score</th>
 						<th>Destiny</th>
 					</tr>
 					{games?.map((game) => (
-						<tr>
+						<tr key={game.id}>
 							<td>{game.score}</td>
 							<td>{game.destiny_content}</td>
 						</tr>

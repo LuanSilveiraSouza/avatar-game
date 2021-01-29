@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import Page from '../../components/Page';
 
 import CharactersImage from '../../assets/characters.jpeg';
 import HomeStyles from './Home.module.css';
 
 const Home = () => {
+	const history = useHistory();
 	const [scrollPosition, setScrollPosition] = useState(0);
 
 	useEffect(() => {
@@ -12,6 +14,14 @@ const Home = () => {
 			setScrollPosition(window.pageYOffset);
 		};
 	}, []);
+
+	const handlePlay = () => {
+		if (localStorage.getItem('user')) {
+			history.push('/dashboard');
+		} else {
+			history.push('/login');
+		}
+	};
 
 	return (
 		<Page navBarMode={scrollPosition <= 250 ? 'transparent' : 'full'}>
@@ -47,7 +57,9 @@ const Home = () => {
 					</p>
 				</section>
 
-				<button className={HomeStyles.playButton}>Play</button>
+				<button className={HomeStyles.playButton} onClick={handlePlay}>
+					Play
+				</button>
 			</div>
 		</Page>
 	);

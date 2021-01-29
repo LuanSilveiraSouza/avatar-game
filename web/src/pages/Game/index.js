@@ -42,11 +42,28 @@ const Game = () => {
 	}, []);
 
 	const handleSubmit = async () => {
+		let response;
+
 		if (questionIndex >= questions.length) {
-			const response = await api.get(`/destinies/${score}`);
+			response = await api.get(`/destinies/${score}`);
 
 			if (response.status === 200) {
-				alert(`Score: ${score} \nDestiny: ${response.data?.content}`);
+				const { id, content } = response.data;
+
+				response = await api.post(`/games`, {
+					user_id: JSON.parse(localStorage.getItem('user')).id,
+					destiny_id: id,
+					score,
+				});
+
+				if (response.status === 201) {
+					alert(
+						`Score: ${score} \nDestiny: ${content}`
+					);
+					history.push('/dashboard');
+				} else {
+					alert('Something went wrong.');
+				}
 			}
 
 			setQuestionIndex(0);
