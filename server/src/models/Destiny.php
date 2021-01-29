@@ -42,7 +42,7 @@ class Destiny
 
     static function findByScore(string $score): mixed
     {
-        $sql = "SELECT * FROM destinies WHERE min_score <= $score && max_score > $score;";
+        $sql = "SELECT * FROM destinies WHERE min_score <= $score && max_score >= $score;";
 
         $result = $GLOBALS['database']->query($sql)->fetch();
 

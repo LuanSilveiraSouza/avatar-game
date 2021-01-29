@@ -13,6 +13,13 @@ class QuestionMigration implements Migration {
             position INT);";
 
         $GLOBALS['database']->query($sql);
+
+        $GLOBALS['database']->query("INSERT INTO questions (position, content)
+        VALUES (1, 'First, wich element do you bend?')");
+        $GLOBALS['database']->query("INSERT INTO questions (position, content)
+        VALUES (2, 'Who is gonna be you partner in this adventure?')");
+        $GLOBALS['database']->query("INSERT INTO questions (position, content)
+        VALUES (3, 'You are at a dense forest and hear a noise, what you will do?')");
     }
 
     static function down(): void {
