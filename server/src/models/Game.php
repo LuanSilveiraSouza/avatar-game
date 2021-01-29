@@ -33,13 +33,13 @@ class Game
 
     static function findByUser(string $id): mixed
     {
-        $sql = "SELECT * FROM games WHERE user_id = $id;";
+        $sql = "SELECT * FROM games INNER JOIN destinies ON games.user_id = $id AND games.destiny_id = destinies.id;";
 
         $result = $GLOBALS['database']->query($sql)->fetchAll();
 
         if ($result != false) {
             return array_map(function ($value) {
-                return array("id" => $value['id'], "user_id" => $value['user_id'], "destiny_id" => $value['destiny_id'], "score" => $value['score']);
+                return array("id" => $value['id'], "user_id" => $value['user_id'], "destiny_id" => $value['destiny_id'], "score" => $value['score'], "destiny_content" => $value['content']);
             }, $result);
         }
         return array();

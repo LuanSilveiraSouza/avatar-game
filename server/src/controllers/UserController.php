@@ -134,6 +134,6 @@ class UserController
             header(HttpCode::Http400);
         }
 
-        echo json_encode(array("msg" => $msg));
+        echo json_encode(array("msg" => $msg, "user" => $user, "session_id" => $_SESSION['user_id']));
     }
 }

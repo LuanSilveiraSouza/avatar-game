@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import Page from '../../components/Page';
+import { useHistory } from 'react-router-dom';
 
+import Page from '../../components/Page';
 import LoginForm from '../../components/forms/LoginForm';
 import RegisterForm from '../../components/forms/RegisterForm';
 
@@ -10,6 +11,7 @@ import CharactersImg from '../../assets/characters3.jpg';
 import RegisterLoginStyles from './RegisterLogin.module.css';
 
 const RegisterLogin = () => {
+	const history = useHistory();
 	const [activeTab, setActiveTab] = useState('login');
 
 	const handleSubmit = async (data) => {
@@ -19,7 +21,9 @@ const RegisterLogin = () => {
 				response = await api.post('/login', data);
 
 				if (response?.status === 200) {
-                    alert('Logged');
+					await localStorage.setItem('user', JSON.stringify(response?.data?.user));
+					alert('Logged');
+					history.push('/dashboard');
 				} else {
 					alert('Error in login. Try again.');
 				}
@@ -44,6 +48,8 @@ const RegisterLogin = () => {
 				} catch (error) {
 					alert('Error in registering. Try again.');
 				}
+			} else {
+				alert('Passwords dont match.');
 			}
 		}
 	};

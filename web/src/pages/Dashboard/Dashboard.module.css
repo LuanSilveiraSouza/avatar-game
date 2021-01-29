@@ -1,0 +1,32 @@
+.container {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    height: 80vh;
+    margin-top: 10%;
+    padding: 0 2%;
+}
+
+.logoutButton {
+    background-color: #FFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 5%;
+    font-size: var(--font-text);
+    border: none;
+    padding: 1% 5%;
+    cursor: pointer;
+    transition: all .3s;
+}
+
+.logoutButton:active,
+.logoutButton:hover {
+    background-color: var(--color-light);
+}
+
+.table {
+    width: 50%;
+    align-self: center;
+    text-align: center;
+}
