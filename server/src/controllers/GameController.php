@@ -10,7 +10,7 @@ use App\Ports\HttpCode;
 
 class GameController
 {
-    static function list(string $user_id)
+    static function getAll(string $user_id)
     {
         header(HttpCode::Http200);
 

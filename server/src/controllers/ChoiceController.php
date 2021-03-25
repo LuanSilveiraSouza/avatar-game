@@ -10,7 +10,7 @@ use App\Ports\HttpCode;
 
 class ChoiceController
 {
-    static function list(string $question_id)
+    static function getAll(string $question_id)
     {
         header(HttpCode::Http200);
 

@@ -40,7 +40,7 @@ class Router
                         UserController::index($resource[2]);
                         $request_processed = true;
                     } else if (isset($_SESSION['user_id'])) {
-                        UserController::list();
+                        UserController::getAll();
                         $request_processed = true;
                     }
                 } else if ($method == "POST") {
@@ -55,7 +55,7 @@ class Router
                 }
             } else if ($resource[1] == "questions") {
                 if ($method == "GET") {
-                    QuestionController::list();
+                    QuestionController::getAll();
                     $request_processed = true;
                 } else if ($method == "POST") {
                     QuestionController::create();
@@ -66,7 +66,7 @@ class Router
                 }
             } else if ($resource[1] == "choices") {
                 if ($method == "GET" && isset($resource[2])) {
-                    ChoiceController::list($resource[2]);
+                    ChoiceController::getAll($resource[2]);
                     $request_processed = true;
                 } else if ($method == "POST") {
                     ChoiceController::create();
@@ -81,7 +81,7 @@ class Router
                         DestinyController::index($resource[2]);
                         $request_processed = true;
                     } else {
-                        DestinyController::list();
+                        DestinyController::getAll();
                         $request_processed = true;
                     }
                 } else if ($method == "POST") {
@@ -93,7 +93,7 @@ class Router
                 }
             } else if ($resource[1] == "games") {
                 if ($method == "GET" && isset($resource[2])) {
-                    GameController::list($resource[2]);
+                    GameController::getAll($resource[2]);
                     $request_processed = true;
                 } else if ($method == "POST") {
                     GameController::create();

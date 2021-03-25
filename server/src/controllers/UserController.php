@@ -10,7 +10,7 @@ use App\Ports\HttpCode;
 
 class UserController
 {
-    static function list()
+    static function getAll()
     {
         header(HttpCode::Http200);
 
