@@ -18,8 +18,10 @@ use App\Database\Migration\ChoiceMigration;
 use App\Database\Migration\DestinyMigration;
 use App\Database\Migration\GameMigration;
 
+echo "Database Migration";
+
 $database = new DBConnection(new MySqlDB());
-$database->connect("mysql:host=127.0.0.1;dbname=public", "root", "dockermysql");
+$database->connect("mysql:host=200.132.13.88;dbname=a402luansouza_db", "a402luansouza", "luan#1souza$6");
 
 class MigrationAgreggator
 {
@@ -42,7 +44,7 @@ class MigrationAgreggator
     }
 }
 
-$response = readline("Database Migration (U for up/D for down): ");
+$response = readline("(U for up/D for down): ");
 
 switch (strtolower($response)) {
     case 'u':

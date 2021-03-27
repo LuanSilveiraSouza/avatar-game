@@ -31,7 +31,7 @@ $request_method = $_SERVER['REQUEST_METHOD'];
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
 $database = new DBConnection(new MySqlDB());
-$database->connect("mysql:host=127.0.0.1;dbname=public", "root", "dockermysql");
+$database->connect("mysql:host=200.132.13.88;dbname=a402luansouza_db", "a402luansouza", "luan#1souza$6");
 $database->set_attributes();
 
 session_start();
