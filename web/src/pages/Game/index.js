@@ -13,7 +13,7 @@ const Game = () => {
 
 	const history = useHistory();
 
-	useEffect(() => {
+	useEffect(async () => {
 		const getData = async () => {
 			const response = await api.get('/questions');
 

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-	baseURL: 'http://localhost:3030',
+	baseURL: 'https://cryptic-peak-81275.herokuapp.com/',
 });
 
 api.defaults.withCredentials = true;

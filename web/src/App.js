@@ -1,9 +1,10 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import AppStyles from './App.module.css';
+
 import Home from './pages/Home';
 import RegisterLogin from './pages/RegisterLogin';
 import Dashboard from './pages/Dashboard';
-
-import AppStyles from './App.module.css';
+import Glossary from './pages/Glossary';
 import Game from './pages/Game';
 
 function App() {
@@ -22,6 +23,9 @@ function App() {
           </Route>
           <Route path='/game'>
             <Game />
+          </Route>
+          <Route path='/glossary'>
+            <Glossary />
           </Route>
         </Switch>
       </Router>

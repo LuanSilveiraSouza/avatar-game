@@ -35,6 +35,12 @@ const NavBar = ({ mode }) => {
 				</button>
 				<button
 					className={NavBarStyles.navButton}
+					onClick={() => history.push('/glossary')}
+				>
+					Glossary
+				</button>
+				<button
+					className={NavBarStyles.navButton}
 					onClick={() => history.push('/login')}
 				>
 					Register/Login
